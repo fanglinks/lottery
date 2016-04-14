@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    font: 12px "\5B8B\4F53", sans-serif;
+    text-align: center;
+    width: 100%;
+    background-color: #0E050F;
+}
+
+.bg {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-width: 900px;
+}
+
+.bg_photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.roll_box {
+    position: absolute;
+    margin-top: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    min-width: 400px;
+    text-align: center;
+}
+
+.holder {
+    height: 20%;
+    /*max-width: 25%;*/
+}
+
+.result_box {
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 50%;
+    height: 20%;
+    min-height: 15%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-bottom: 300px;
+}
+
+.result {
+    max-height: 100%;
+    margin: 0 10px 10px 10px;
+}
+
+.win_num {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5%;
+}
+
+.button_box {
+    margin: 10px 0 0 0;
+}
+
+.button_box .btn {
+    background-image: url(img/button.png);
+    background-size: 50%;
+    position: fixed;
+    bottom: 0;
+    right: 0%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    padding: 0 30px;
+    margin: 0 10px;
+    color: #555;
+    font-family: "\5B8B\4F53", sans-serif;
+    font-size: 40px;
+}
+
+#imgAttr {
+    position: fixed;
+    top: 0;
+    left: 0%;
+    /*transform: translateX(-50%);*/
+    height: 400px;
+    /*width: 300px;*/
+    display: none;
+    z-index: 999;
+}
