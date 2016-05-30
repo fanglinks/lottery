@@ -4,7 +4,7 @@ body {
     font: 12px "\5B8B\4F53", sans-serif;
     text-align: center;
     width: 100%;
-    background-color: #0E050F;
+    background-color: #824986;
 }
 
 .bg {
@@ -26,7 +26,7 @@ body {
 
 .roll_box {
     position: absolute;
-    margin-top: 27%;
+    margin-top: 40%;
     left: 50%;
     transform: translateX(-50%);
     width: 40%;
@@ -40,27 +40,28 @@ body {
 }
 
 .result_box {
-    position: absolute;
     width: 100%;
-    top: 40%;
+    position: absolute;
+    margin-top: 40%;
     left: 50%;
-    height: 20%;
+    transform: translateX(-50%);
+    height: 15%;
     min-height: 15%;
     transform: translateX(-50%);
     text-align: center;
-    margin-bottom: 300px;
+    /*margin-bottom: 100px;*/
 }
 
 .result {
     max-height: 100%;
-    margin: 0 10px 10px 10px;
+    margin: 0 5px 10px 5px;
 }
 
 .win_num {
     position: absolute;
     right: 0;
     top: 0;
-    width: 5%;
+    width: 2%;
 }
 
 .button_box {
@@ -84,10 +85,10 @@ body {
 
 #imgAttr {
     position: fixed;
-    top: 0;
-    left: 0%;
-    /*transform: translateX(-50%);*/
-    height: 400px;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 480px;
     /*width: 300px;*/
     display: none;
     z-index: 999;

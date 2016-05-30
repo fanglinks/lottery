@@ -5,7 +5,7 @@ body {
     text-align: center;
     width: 100%;
     background-color: #0E050F;
-    /*-moz-user-select:none;/*火狐*/
+    -moz-user-select:none;/*火狐*/
     -webkit-user-select:none;/*webkit浏览器*/
     user-select:none;*/
 }
@@ -27,24 +27,23 @@ body {
 
 .roll_box {
     position: relative;
-    margin-top: 30%;
+    margin-top: 35%;
     margin-bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
+    width: 100%;
     min-width: 400px;
     text-align: center;
 }
 
-#order{
+.order{
+    display: inline-block;
+
     color: #f8cc6e;
     font-size: 150px;
     letter-spacing: 10px;
     font-weight: 900;
-
-    margin: 0;
+    margin: 10px 30px 10px 30px;
 }
-.button{
+/*.button{
     cursor: pointer;
     position: relative;
     margin-top: 5%;
@@ -60,9 +59,9 @@ body {
     line-height: 92px;
     font-size: 20px;
     font-weight: 700;
-}
+}*/
 
-.show{
+/*.show{
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -78,9 +77,9 @@ body {
     right: 0;
     display: none;
     z-index: 999;
-}
+}*/
 
-.winner_box{
+/*.winner_box{
     border: 1px solid #f8cc6e;
     width: 80px;
     position: absolute;
@@ -95,4 +94,4 @@ body {
 .clear{
     border: 0.5px solid #f8cc6e;
     width: 79px;
-}
+}*/

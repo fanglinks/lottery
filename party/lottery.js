@@ -63,96 +63,85 @@ $(document).ready(function() {
         },
     });
     var situation = "start";
-    $("#start_stop").bind('click', function() {
-        // alert();
-        switch(situation){
-            //点击开始
-            case "start":
-                $('.holder').show();
-                if ( parseInt(getMax())  < parseInt($('.win_num').val())){
-                    alert("抽奖人数不足");
-                    return false;
-                };
-                $('.result_box').empty();
-                allData = JSON.parse(localStorage.data);
-                max = setMax();
-                $("#start_stop").text("停止");
-                situation = "stop";
-                function start(max) {
-                    timer = setInterval('change(max)',10); //随机数据变换速度，越小变换的越快    
-                };
-                start(max);
-                break;
-            // 点击停止
-            case "stop":
-                $('.holder').hide();
-                max = getMax();
-                $("#start_stop").text("开始");
-                situation = "start";
-                clearInterval(timer);
-                var win_num = $('.win_num').val();
-                var result_pos = 0;
-                var delaySecond = 0;
-                for(var i = 0; i < win_num; i++){
-                    $('.result_box').append('<img class="result" style="opacity:0;" src="" alt="">');
-                };
-                $('.result').each(function() {
-                    var cut =  getPhoto(max);
-                    $(this).attr("src", "./image/"+ allData[cut]);
-                    var checkStr = allData[cut].split('.')[0];
-                    var check = $('.holder').each(function() {
-                        if ($(this).attr("src").indexOf(checkStr) != -1) {
-                            return true;
-                        }else {return false;}
-                    });
-                    while (check == true) {
-                        cut =  getPhoto(max);
-                        $(this).attr("src", "./image/"+ allData[cut]);
-                    }
-                    $('.holder').attr("src", "./image/"+ allData[cut]);
-                    var src = this.src;
-                    var checkNum = allData.length;
-                    for(var i = 0; i < checkNum;i++){
-                        var pos = allData[i].indexOf(".");
-                        if(allData[i].indexOf("副") != -1){
-                            pos = allData[i].indexOf("副");
-                        }
-
-                        var del = allData[i].substring(0, pos);
-
-                        if (src.indexOf(del) != -1) {
-                            // console.log(del);
-                            // console.log(src);
-
-                            allData.splice(i,1);
-                            localStorage.setItem('data',JSON.stringify(allData));
-
-                            max = setMax();
-                            checkNum = allData.length;
-                            // console.log(checkNum);
-                            i--;
-                        }
-                    }
-                });
-                for(var i = 0; i < win_num; i++){
-                    (function(i) {
-                        setTimeout(function (){
-                            $('.result').eq(i).animate({opacity:'1'}, 2000);
-                        }, (i * 200) );
-                    })(i);
-                };
-                localStorage.setItem('data',JSON.stringify(allData));
-                $('.result').on('mouseover', function(event) {
-                    var url = this.src;
-                    $("#imgAttr").attr("src",url).show(); 
-                    // $(this).attr("src", "./image/"+ allData[getPhoto(max)]);
-                    // console.log(this.src);
-                });
-                $('.result').on('mouseout', function(event) {
+    $(document).keydown(function(event){ 
+        if(event.keyCode == 32 || event.keyCode == 13){
+            switch(situation){
+                //点击开始
+                case "start":
+                    $('.holder').show();
                     $("#imgAttr").hide(); 
-                });
-                break;
+                    $("#start_stop").text("停止");
+                    $('.result_box').empty();
+
+                    if ( parseInt(getMax())  < parseInt($('.win_num').val())){
+                        alert("抽奖人数不足");
+                        return false;
+                    }else{
+                        allData = JSON.parse(localStorage.data);
+                        max = setMax();
+                        function start(max) {
+                            timer = setInterval('change(max)',10); //随机数据变换速度，越小变换的越快    
+                        };
+                        start(max);
+                    }
+                    situation = "stop";
+                    break;
+                // 点击停止
+                case "stop":
+                    $('.holder').hide();
+                    $("#start_stop").text("开始");
+                    situation = "start";
+                    max = getMax();
+                    clearInterval(timer);
+
+                    var win_num = $('.win_num').val();
+                    for(var i = 0; i < win_num; i++){
+                        $('.result_box').append('<img class="result" style="display:none" src="" alt="">');
+                    };
+                    $('.result').each(function() {
+                        var cut =  getPhoto(max);
+                        $(this).attr("src", "./image/"+ allData[cut]);
+                        var src = this.src;
+                        var checkNum = allData.length;
+                        for(var i = 0; i < checkNum;i++){
+                            // 到.结束
+                            var pos = allData[i].indexOf(".");
+                            // 如果是副本，到“副”结束
+                            if(allData[i].indexOf("副") != -1){
+                                pos = allData[i].indexOf("副");
+                            }
+                            //截图图片名称
+                            var del = allData[i].substring(0, pos);
+
+                            if (src.indexOf(del) != -1) {
+                                allData.splice(i,1);
+                                // localStorage.setItem('data',JSON.stringify(allData));
+                                max = setMax();
+                                checkNum = allData.length;
+                                i--;
+                            }
+                        }
+                    });
+                    for(var i = 0; i < win_num; i++){
+                        (function(i) {
+                            setTimeout(function (){
+                                $('.result').eq(i).addClass(' tada animated');
+                                $('.result').eq(i).show();
+                            }, (i * 1000) );
+                        })(i);
+                    };
+                    localStorage.setItem('data',JSON.stringify(allData));
+                    $('.result').on('mouseover', function(event) {
+                        var url = this.src;
+                        $("#imgAttr").attr("src",url).show(); 
+                        // $(this).attr("src", "./image/"+ allData[getPhoto(max)]);
+                        // console.log(this.src);
+                    });
+                    $('.result').on('mouseout', function(event) {
+                        $("#imgAttr").hide(); 
+                    });
+                    break;
+            }
         }
-    });
-    
+    }); 
 });

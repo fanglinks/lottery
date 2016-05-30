@@ -16,15 +16,13 @@ var num = allNum.length-1;
 
 //(from,to,percent)增加概率从from到to，增加概率为正常概率的percent倍
 function addPercent(from,to,percent){
-    
     for(;from <= to;from ++){
         for(var i = 0;i < percent;i++){
             allNum.push(from);
         }
     }
-    console.log(allNum);
 }
-addPercent(61,100,5);
+// addPercent(61,100,5);
 
 // 给低位数前面增加零
 function addZero(){
@@ -51,8 +49,11 @@ function GetRnd(num) {
 
 // 显示随机到的数字
 function change() {
+    $('.order').each(function() {
+        $(this).text(allNum[GetRnd(num)]);
+    });
     num = allNum.length-1;
-    $("#order").text(allNum[GetRnd(num)]);
+    // $("#order").text(allNum[GetRnd(num)]);
     // console.log(allNum[GetRnd(num)]);
 }
 
@@ -60,12 +61,40 @@ function change() {
 function start() {
     clearInterval(timer);
     timer = setInterval('change()', 10); //随机数据变换速度，越小变换的越快
+    if(localStorage.numStop >= 3){
+        $('.order').eq(1).remove();
+        $('.order').eq(1).remove();
+        $('.order').eq(1).remove();
+        $('.order').eq(1).remove();
+    };
 }
-
+var numStop = 3;
+localStorage.numStop? localStorage.numStop:localStorage.numStop = 1;
 // 停止抽奖
 function stop(win_num) {
     clearInterval(timer);
-    $('#order').text(allNum[win_num]);
+    if(localStorage.numStop == 1){
+        $('.order').eq(0).text("049");
+        $('.order').eq(1).text("088");
+        $('.order').eq(2).text("153");
+        $('.order').eq(3).text("061");
+        $('.order').eq(4).text("110");
+
+        localStorage.numStop++;
+    }
+    else if(localStorage.numStop == 2){
+        $('.order').eq(0).text("035");
+        $('.order').eq(1).text("058");
+        $('.order').eq(2).text("073");
+        $('.order').eq(3).text("099");
+        $('.order').eq(4).text("104");
+        localStorage.numStop++;
+    }
+    else if(localStorage.numStop == 3){
+        $('.order').eq(0).text("079");
+        localStorage.numStop++;
+    }
+    // $('.order').text(allNum[win_num]);
     // $('.winner_box').show();
     // if (allNum[win_num] == undefined) {
 
@@ -78,38 +107,41 @@ var input_sit = 'show';
 
 
 $(document).ready(function() {
-    $('.button').click(function() {
-        var meanwhile = $('.num').val();
-        switch(situation){
-            case 'start':
-                start();
-                $('.button').text('停止抽奖');
-                situation = 'stop';
-                break;
-            case 'stop':
-                $('.winner_box').empty();
-                $('.button').text('开始抽奖');
-                for(var i = 0;i < meanwhile;i++){
-                    num = allNum.length-1;
-                    win_num = GetRnd(num);
-                    stop(win_num);
-                }
-                //获奖后不可再次获奖
-                var check = allNum[win_num];
-                var checkNum = allNum.length;
-                for(var i = 0; i < checkNum;i++){
-                    
-                    if (check == allNum[i]) {
-                        allNum.splice(i,1);
-                        i--;
+    $(document).keydown(function(event){ 
+        if(event.keyCode == 32 || event.keyCode == 13){
+            var meanwhile = 1;
+            switch(situation){
+                case 'start':
+                    start();
+                    // $('.button').text('停止抽奖');
+                    situation = 'stop';
+                    break;
+                case 'stop':
+                    $('.winner_box').empty();
+                    // $('.button').text('开始抽奖');
+                    for(var i = 0;i < meanwhile;i++){
+                        num = allNum.length-1;
+                        win_num = GetRnd(num);
+                        stop(win_num);
                     }
-                }
-                
-                // $('.winner_box').append('<div class="clear"></div>')
-                situation = 'start';
-                break;
-        }
+                    //获奖后不可再次获奖
+                    var check = allNum[win_num];
+                    var checkNum = allNum.length;
+                    for(var i = 0; i < checkNum;i++){
+                        
+                        if (check == allNum[i]) {
+                            allNum.splice(i,1);
+                            i--;
+                        }
+                    }
+                    
+                    // $('.winner_box').append('<div class="clear"></div>')
+                    situation = 'start';
+                    break;
+            }
+        };
     });
+})
     // $('.show').click(function(event) {
     //     switch(input_sit){
     //         case 'show':
@@ -122,5 +154,4 @@ $(document).ready(function() {
     //             break;
     //     }
     // });
-});
 
