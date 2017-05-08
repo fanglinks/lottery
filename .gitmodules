@@ -1,0 +1,3 @@
+[submodule "kernel"]
+	path = kernel
+	url = git@git.shequan.com:wangchunpeng/kernel.git
