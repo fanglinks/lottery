@@ -1,0 +1,16 @@
+@font-face{
+　　font-family: "hanti";
+　　src: url("https://martin-upload.b0.upaiyun.com/web/2017/04/eabc921a9aa4c076f27fffcff26a3a98.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "eabc921a9aa4c076f27fffcff26a3a98";
+    src: url("/fonts/eabc921a9aa4c076f27fffcff26a3a98.eot"); /* IE9 */
+    src: url("/fonts/eabc921a9aa4c076f27fffcff26a3a98.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("/fonts/eabc921a9aa4c076f27fffcff26a3a98.woff") format("woff"), /* chrome, firefox */
+    url("https://martin-upload.b0.upaiyun.com/web/2017/04/eabc921a9aa4c076f27fffcff26a3a98.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("/fonts/eabc921a9aa4c076f27fffcff26a3a98.svg#eabc921a9aa4c076f27fffcff26a3a98") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
